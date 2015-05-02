@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.video.viettivi"
+       name="VietTivi"
+       version="1.0.0"
+       provider-name="VietTivi">
+    <requires>
+		<import addon="xbmc.python" version="2.1.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <language>en</language>
+		<summary lang="en">Xem tivi</summary>
+		<description lang="en">Add-on cho phép xem các kênh truyền hình việt nam</description>
+    </extension>
+</addon>
+</addons>
