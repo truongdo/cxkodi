@@ -1,22 +1,33 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.viettivi"
-       name="VietTivi"
-       version="0.2"
-       provider-name="VietTivi">
-    <requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.xbmcswift2" version="2.4.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <language>en</language>
-		<summary lang="en">Xem tivi</summary>
-		<description lang="en">Add-on cho phép xem các kênh truyền hình việt nam</description>
-    </extension>
+<addon id="plugin.video.viettivi" name="viettivi" version="0.2" provider-name="repository.cxkodi.com">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.xbmcswift2" version="2.4.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <language></language>
+    <summary>Summary for "viettivi"</summary>
+    <description>Description for "viettivi"</description>
+  </extension>
+</addon>
+<addon id="plugin.video.viettivistart" name="viettivistart" version="0.1" provider-name="repository.cxkodi.com">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="plugin.video.viettivi" version="0.2"/>
+  </requires>
+  <extension point="xbmc.service"
+			library="default.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <language></language>
+    <summary>StartUp viettivi</summary>
+    <description>StartUp viettivi</description>
+  </extension>
 </addon>
 </addons>
