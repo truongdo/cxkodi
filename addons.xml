@@ -15,7 +15,7 @@
     <description>Description for "viettivi"</description>
   </extension>
 </addon>
-<addon id="plugin.video.viettivistart" name="viettivistart" version="0.4" provider-name="repository.cxkodi.com">
+<addon id="plugin.video.viettivistart" name="viettivistart" version="0.5" provider-name="repository.cxkodi.com">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="plugin.video.viettivi" version="0.2"/>

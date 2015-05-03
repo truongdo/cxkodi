@@ -27,7 +27,7 @@ def playVtv3():
         ac = item.find('a', {'class' : 'tooltips'})
         href = 'http://hplus.com.vn/' + ac.get('href')
         title = ac.find('h3').string
-        if title = 'VTV3 HD':
+        if title == 'VTV3 HD' :
         	xbmc.Player().play(getLink(href))
 
 playVtv3()
