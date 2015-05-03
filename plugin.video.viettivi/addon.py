@@ -8,8 +8,24 @@ from BeautifulSoup import BeautifulSoup
 
 plugin = Plugin()
 
-def getChannels():
+def toItems(rawitems):
     cns = []
+    for rit in rawitems :
+        cn = {
+                'label': rit[0],
+                'path': rit[1],
+                'is_playable': True
+            }
+        cns.append(cn)
+    return cns
+
+def getChannels():
+    channels_cached = plugin.get_storage('channels',TTL=24*60)
+
+    if len(channels_cached.items()) > 0 :
+        print('from cache')
+        return toItems(channels_cached.items())
+
     url = 'http://hplus.com.vn/vi/categories/live-tv'
     result = None
     result = urlfetch.fetch(url)
@@ -21,13 +37,10 @@ def getChannels():
         ac = item.find('a', {'class' : 'tooltips'})
         href = 'http://hplus.com.vn/' + ac.get('href')
         title = ac.find('h3').string
-        cn = {
-                'label': title,
-                'path': plugin.url_for('plays',href = href),
-                'is_playable': True
-            }
-        cns.append(cn)
-    return cns
+        path = plugin.url_for('plays',href = href)
+        channels_cached.update({title : path})
+    print('new data')
+    return toItems(channels_cached.items())
 
 def getLink(url = None):
     if url == None :
@@ -49,6 +62,8 @@ def index():
 def plays(href):
     link = getLink(href)
     plugin.set_resolved_url(link)
+
+getChannels()
 
 if __name__ == '__main__':
     plugin.run()
