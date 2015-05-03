@@ -1,13 +1,33 @@
-import os, xbmc, xbmcaddon
+import os, xbmc
+import urlfetch
+import re
+from BeautifulSoup import BeautifulSoup
 
-my_addon = xbmcaddon.Addon('plugin.video.viettivi')
-addon_dir = xbmc.translatePath( my_addon.getAddonInfo('path') )
+def getLink(url = None):
+    if url == None :
+        return None
+    result = None
+    result = urlfetch.fetch(url)
+    if result.status_code != 200 :
+        return None
+    m = re.search(r'\"(http://.+\.cdnviet.com/.+\.m3u8\?.+)\"',result.content)
+    if m == None :
+        return None
+    return m.group(1)
 
-sys.path.append(os.path.join( addon_dir, 'resources', 'lib' ) )
+def playVtv3():
+    url = 'http://hplus.com.vn/vi/categories/live-tv'
+    result = None
+    result = urlfetch.fetch(url)
+    if result.status_code != 200 :
+        return None
+    soup = BeautifulSoup(result.content, convertEntities=BeautifulSoup.HTML_ENTITIES)
+    items = soup.findAll('div', {'class' : 'panel'})
+    for item in items:
+        ac = item.find('a', {'class' : 'tooltips'})
+        href = 'http://hplus.com.vn/' + ac.get('href')
+        title = ac.find('h3').string
+        if title = 'VTV3 HD':
+        	xbmc.Player().play(getLink(href))
 
-from viettivi import addon as viettv
-
-cns = viettv.getChannels()
-for cn in cns:
-	if cn['label'] == 'VTV3 HD':
-		xbmc.Player().play('http://s3.amazonaws.com/KA-youtube-converted/ANyVpMS3HL4.mp4/ANyVpMS3HL4.mp4')
+playVtv3()
