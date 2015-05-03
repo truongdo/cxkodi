@@ -1,4 +1,10 @@
-import os, xbmc
+import os, xbmc, xbmcaddon
+
+my_addon = xbmcaddon.Addon('plugin.video.viettivi')
+addon_dir = xbmc.translatePath( my_addon.getAddonInfo('path') )
+
+sys.path.append(os.path.join( addon_dir, 'resources', 'lib' ) )
+
 from viettivi import addon as viettv
 
 cns = viettv.getChannels()
