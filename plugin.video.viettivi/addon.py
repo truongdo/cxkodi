@@ -8,9 +8,18 @@ from BeautifulSoup import BeautifulSoup
 
 plugin = Plugin()
 
-def getChannels():
+def getAllChannels():
     cns = []
-    url = 'http://hplus.com.vn/vi/categories/live-tv'
+    cns.extend(getChannels('http://hplus.com.vn/vi/genre/index/64/4'))
+    cns.extend(getChannels('http://hplus.com.vn/vi/genre/index/66/4'))
+    cns.extend(getChannels('http://hplus.com.vn/vi/genre/index/67/4'))
+    cns.extend(getChannels('http://hplus.com.vn/vi/genre/index/68/4'))
+    cns.extend(getChannels('http://hplus.com.vn/vi/genre/index/70/4'))
+    cns.extend(getChannels('http://hplus.com.vn/vi/genre/index/71/4'))
+    return cns
+
+def getChannels(url):
+    cns = []
     result = None
     result = urlfetch.fetch(url)
     if result.status_code != 200 :
@@ -41,9 +50,9 @@ def getLink(url = None):
         return None
     return m.group(1)
 
-@plugin.route('/')
+@plugin.cached_route('/')
 def index():
-    cns = getChannels()
+    cns = getAllChannels()
     return cns
 @plugin.route('/plays/<href>')
 def plays(href):
