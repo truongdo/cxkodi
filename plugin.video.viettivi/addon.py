@@ -50,7 +50,7 @@ def getLink(url = None):
         return None
     return m.group(1)
 
-@plugin.cached_route('/')
+@plugin.route('/')
 def index():
     cns = getAllChannels()
     return cns
