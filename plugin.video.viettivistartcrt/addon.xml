@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.viettivistartcrt" name="viettivistartcrt" version="0.1" provider-name="repository.cxkodi.com">
+<addon id="plugin.video.viettivistartcrt" name="viettivistartcrt" version="0.2" provider-name="repository.cxkodi.com">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="plugin.video.viettivi" version="0.2"/>
   </requires>
   <extension point="xbmc.service"
 			library="default.py" start="startup">
