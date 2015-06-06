@@ -3,11 +3,8 @@
 
 from xbmcswift2 import Plugin,xbmcaddon, xbmc
 import urlfetch
-import re
 from BeautifulSoup import BeautifulSoup
-import urllib
 import json
-import sys
 
 plugin = Plugin()
 __settings__ = xbmcaddon.Addon(id='plugin.video.fptplay')
