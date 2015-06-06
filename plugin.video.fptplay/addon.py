@@ -83,7 +83,7 @@ def getLink(id = None):
     result = urlfetch.post(
         'http://fptplay.net/show/getlinklivetv',
         data={"id": id,
-            "quality": "4",
+            "quality": __settings__.getSetting('quality'),
             "mobile": "web"
             },
         headers={'Content-Type': 'application/x-www-form-urlencoded',
