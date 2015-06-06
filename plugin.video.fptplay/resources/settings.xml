@@ -1,0 +1,3 @@
+<settings>
+   <setting id="start_channelid" type="text" label="Start Up Channel Name" default='vtv6-hd'/>
+</settings>

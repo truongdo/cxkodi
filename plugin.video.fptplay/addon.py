@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from xbmcswift2 import Plugin
+from xbmcswift2 import Plugin,xbmcaddon, xbmc
 import urlfetch
 import re
 from BeautifulSoup import BeautifulSoup
 import urllib
 import json
+import sys
 
 plugin = Plugin()
+__settings__ = xbmcaddon.Addon(id='plugin.video.fptplay')
 crawurl = 'http://fptplay.net/livetv'
 
 def getAllChannels():
@@ -103,9 +105,14 @@ def index():
 
 @plugin.route('/plays/<id>')
 def plays(id):
-    
     link = getLink(id)
     plugin.set_resolved_url(link)
 
+def startChannel():
+    channelid = __settings__.getSetting('start_channelid')
+    link = getLink(channelid)
+    xbmc.Player().play(link)
+    
 if __name__ == '__main__':
     plugin.run()
+    
