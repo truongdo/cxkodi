@@ -8,11 +8,14 @@
   <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>video</provides>
   </extension>
+  <extension point="xbmc.service"
+			library="start.py" start="startup">
+  </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <language></language>
-    <summary>Fpt Play</summary>
-    <description>Fpt Play</description>
+    <summary lang="vi">Xem video trực tuyến</summary>
+    <description lang="vi">Ứng dụng cho phép xem video trực tuyến, nguồn video từ website fpt play</description>
   </extension>
 </addon>
 </addons>
