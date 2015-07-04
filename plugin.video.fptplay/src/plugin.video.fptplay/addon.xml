@@ -15,5 +15,13 @@
     <language></language>
     <summary lang="en">Vietnam TV Online</summary>
     <description lang="en">This plugin allows you to watch live TV channels in Vietnam - Source from ftp play sites (http://fptplay.net)</description>
+	<language>vi</language>
+	<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+	<forum></forum>
+	<website>https://github.com/vinhhrv/cxkodi</website>
+	<source>https://github.com/vinhhrv/cxkodi</source>
+	<disclaimer></disclaimer>
+	<email></email>
+	<broken></broken>
   </extension>
 </addon>
