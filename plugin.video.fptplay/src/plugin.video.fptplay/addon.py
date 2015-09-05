@@ -168,6 +168,7 @@ def index():
 @plugin.route('/plays/<id>')
 def plays(id):
     link = getLink(id)
+    plugin.log.info("Playing : " + link)
     plugin.set_resolved_url(link)
 
 if __name__ == '__main__':
