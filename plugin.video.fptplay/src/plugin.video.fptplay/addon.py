@@ -157,6 +157,10 @@ def getLink(id = None):
     if result.status_code != 200 :
         plugin.log.error("Can't get link for id " + id)
         return None
+
+    info = json.loads(result.content)
+    plugin.log.error(info)
+
     return info['stream']
 
 def startChannel():
