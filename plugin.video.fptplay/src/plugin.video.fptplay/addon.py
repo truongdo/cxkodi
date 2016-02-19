@@ -9,11 +9,11 @@ import re
 
 plugin = Plugin()
 __settings__ = xbmcaddon.Addon(id='plugin.video.fptplay')
-crawurl = 'http://fptplay.net/livetv'
+crawurl = 'https://fptplay.net/livetv'
 
 def getAllChannels():
     cns = []
-    cns.extend(getEvents(crawurl))
+    #cns.extend(getEvents(crawurl))
     cns.extend(getChannels(crawurl))
     return cns
 
@@ -68,7 +68,7 @@ def getChannels(url):
         return None
     soup = BeautifulSoup(result.content, convertEntities=BeautifulSoup.HTML_ENTITIES)
 
-    items = soup.findAll('div', {'class' : 'item_view'})
+    items = soup.findAll('div', {'class' : 'hover01'})
     for item in items:
 
         ac = item.find('a', {'class' : 'tv_channel '})
