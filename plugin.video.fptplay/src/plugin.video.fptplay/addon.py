@@ -7,6 +7,7 @@ from BeautifulSoup import BeautifulSoup
 import json
 import re
 import fptplay
+import zingtv
 
 plugin = Plugin()
 __settings__ = xbmcaddon.Addon(id='plugin.video.fptplay')
@@ -36,11 +37,18 @@ def plays(id):
 @plugin.route('/resolve/<uri>')
 def resolve(uri):
     plugin.log.info("Resolve : " + uri)
-    s_link = fptplay.getLink(uri,__settings__.getSetting('quality'))
+    s_link = resolve_url(uri)
     plugin.log.info("Return url : " + s_link)
     if s_link == None :
         return None 
     plugin.set_resolved_url(s_link)
+
+def resolve_url(uri):
+    if uri.startswith('http://tv.zing.vn'):
+        return zingtv.getLink(uri)
+    if uri.startswith('https://fptplay.net'):
+        return fptplay.getLink(uri,__settings__.getSetting('quality'))
+    return None
 
 def getChannels(url):
     cns = []
