@@ -6,6 +6,7 @@ import urlfetch
 from BeautifulSoup import BeautifulSoup
 import json
 import re
+import fptplay
 
 plugin = Plugin()
 __settings__ = xbmcaddon.Addon(id='plugin.video.fptplay')
@@ -195,6 +196,16 @@ def plays(id):
     link = getLink(id)
     plugin.log.info("Playing : " + link)
     plugin.set_resolved_url(link)
+
+@plugin.route('/resolve/<uri>')
+def resolve(uri):
+    plugin.log.info("Resolve : " + uri)
+    s_link = fptplay.getLink(uri,__settings__.getSetting('quality'))
+    plugin.log.info("Return url : " + s_link)
+    if s_link == None :
+        return None 
+    plugin.set_resolved_url(s_link)
+
 
 if __name__ == '__main__':
     plugin.run()
