@@ -24,12 +24,14 @@ def getLinkById(id = None, quality = "3"):
             'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36'
             })
 
-    m = re.search(r"name=\"_token\" content=\"(.+)\"",result.content)
+    #m = re.search(r"name=\"_token\" content=\"(.+)\"",result.content)
 
-    if m == None :
-        return None
-    csrf = m.group(1)
+    #if m == None :
+    #    return None
+    #csrf = m.group(1)
+
     cookie='laravel_session=' + result.cookies.get('laravel_session') + ";"
+    csrf = result.cookies.get('token')
 
     result = urlfetch.post(
         'https://fptplay.net/show/getlinklivetv',
@@ -63,11 +65,11 @@ def getLink(uri = None, quality = "3"):
             'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36'
             })
 
-    m = re.search(r"name=\"_token\" content=\"(.+)\"",result.content)
+    #m = re.search(r"name=\"_token\" content=\"(.+)\"",result.content)
 
-    if m == None :
-        return None
-    csrf = m.group(1)
+    #if m == None :
+    #    return None
+    #csrf = m.group(1)
 
     m = re.search(r"var id = '([^']+)';",result.content)
     if m == None :
@@ -75,7 +77,8 @@ def getLink(uri = None, quality = "3"):
     id = m.group(1)
     
     cookie='laravel_session=' + result.cookies.get('laravel_session') + ";"
-
+    csrf = result.cookies.get('token')
+    
     result = urlfetch.post(
         'https://fptplay.net/show/getlinklivetv',
         data={"id": id,
